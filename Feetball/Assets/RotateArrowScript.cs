@@ -17,12 +17,15 @@ public class RotateArrowScript : MonoBehaviour
     {
         shootScript.OnAim += OnAim;
         shootScript.OnShoot += OnShoot;
+        shootScript.OnEndAim += OnEndAim;
     }
 
     private void OnDestroy()
     {
         shootScript.OnAim -= OnAim;
         shootScript.OnShoot -= OnShoot;
+        shootScript.OnEndAim -= OnEndAim;
+
     }
 
     private void Update()
@@ -59,9 +62,13 @@ public class RotateArrowScript : MonoBehaviour
         transform.rotation = rotateAmount;
     }
 
-    private void OnShoot(float power)
+    private void OnEndAim()
     {
         canAim = false;
+    }
+
+    private void OnShoot(float power)
+    {
         arrow.SetActive(false);
 
     }

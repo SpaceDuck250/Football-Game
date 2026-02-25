@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using System.Runtime.CompilerServices;
 
 public class FootballShootScript : MonoBehaviour
 {
@@ -15,10 +14,14 @@ public class FootballShootScript : MonoBehaviour
     public ShootMode currentShootMode;
 
     public event System.Action OnAim;
+    public event System.Action OnEndAim;
+    public event Action<float> OnCharge;
     public event Action<float> OnShoot;
 
     public float maxCharge;
     public float chargeAmount;
+
+    public float chargeSpeed;
 
     public KeyCode shootKey;
 
@@ -33,6 +36,7 @@ public class FootballShootScript : MonoBehaviour
         }
         else if (Input.GetKeyDown(shootKey) && currentShootMode == ShootMode.aimMode)
         {
+            OnEndAim?.Invoke();
             BeginChargingUp();
         }
         else if (Input.GetKeyUp(shootKey) && currentShootMode == ShootMode.chargeMode)
@@ -57,11 +61,13 @@ public class FootballShootScript : MonoBehaviour
 
     private void ChargeUpShot()
     {
-        chargeAmount += Time.deltaTime;
+        chargeAmount += Time.deltaTime * chargeSpeed;
         if (chargeAmount >= maxCharge)
         {
             chargeAmount = maxCharge;
         }
+
+        OnCharge?.Invoke(chargeAmount);
     }
 
     private void ShootFootball(float power)
