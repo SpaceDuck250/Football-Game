@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using Game;
 
 public class FootballShootScript : MonoBehaviour
 {
@@ -25,8 +26,17 @@ public class FootballShootScript : MonoBehaviour
 
     public KeyCode shootKey;
 
+    public Team teamIn;
+
+    public TurnManagerScript turnManager;
+
     private void Update()
     {
+        if (turnManager.teamTurn != teamIn)
+        {
+            return;
+        }
+
         // Change later
         if (Input.GetKeyDown(shootKey) && currentShootMode == ShootMode.none)
         {
@@ -76,6 +86,7 @@ public class FootballShootScript : MonoBehaviour
         currentShootMode = ShootMode.kickMode;
 
         OnShoot?.Invoke(power);
+        TurnManagerScript.OnSwitchTurn?.Invoke();
 
         currentShootMode = ShootMode.none;
     }

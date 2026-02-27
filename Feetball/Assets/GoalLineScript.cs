@@ -8,6 +8,13 @@ public class GoalLineScript : MonoBehaviour
 
     public static event Action<Team> OnGoalScored;
 
+    public static bool canScore;
+
+    private void Start()
+    {
+        canScore = true;
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag != "GameBall")
@@ -26,6 +33,11 @@ public class GoalLineScript : MonoBehaviour
 
     private bool CheckIfBallCrossedLine(Vector2 gameBallMoveDirection)
     {
+        if (!canScore)
+        {
+            return false;
+        }
+
         Vector2 goalLineUp = transform.up;
 
         float dotProduct = Vector2.Dot(gameBallMoveDirection, goalLineUp);
