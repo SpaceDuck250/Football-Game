@@ -9,26 +9,20 @@ public class GoalScoredPositionSetter : MonoBehaviour
 
     private void Start()
     {
-        GoalLineScript.OnGoalScored += OnGoalScored;
+        StartTurnSetter.OnLevelReset += OnLevelReset;
     }
 
     private void OnDestroy()
     {
-        GoalLineScript.OnGoalScored -= OnGoalScored;
+
+        StartTurnSetter.OnLevelReset -= OnLevelReset;
 
     }
 
-    private void OnGoalScored(Team team)
+    private void OnLevelReset(Team team)
     {
-        GoalLineScript.canScore = false;
-        Invoke("ResetMap", waitTime);
-    }
-
-    private void ResetMap()
-    {
-        GoalLineScript.canScore = true;
-
         positionSetter.SetAllObjectPositions();
 
     }
+
 }

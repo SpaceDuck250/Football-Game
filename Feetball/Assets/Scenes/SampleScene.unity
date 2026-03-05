@@ -493,7 +493,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnTextComponent: {fileID: 1957708567}
-  turnManager: {fileID: 969753687}
 --- !u!1 &88922572
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,6 +504,7 @@ GameObject:
   - component: {fileID: 88922574}
   - component: {fileID: 88922573}
   - component: {fileID: 88922575}
+  - component: {fileID: 88922576}
   m_Layer: 0
   m_Name: PositionSetter
   m_TagString: Untagged
@@ -557,6 +557,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   positionSetter: {fileID: 88922573}
   waitTime: 2
+--- !u!114 &88922576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88922572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: febf8626e3e1e634dbb68951659f3f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recentlyScoredOnTeam: 0
+  waitTime: 1.2
 --- !u!1 &99758609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1712,7 +1726,7 @@ MonoBehaviour:
   maxCharge: 3
   chargeAmount: 0
   chargeSpeed: 10
-  shootKey: 103
+  shootKey: 97
   teamIn: 1
   turnManager: {fileID: 969753687}
 --- !u!50 &413228935
@@ -2621,9 +2635,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e0f2087e022ea4b9cdb829d1a4df58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTurnObj: {fileID: 2076724853}
-  player1: {fileID: 2076724853}
-  player2: {fileID: 413228930}
   teamTurn: 0
 --- !u!4 &969753688
 Transform:
